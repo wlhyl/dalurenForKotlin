@@ -143,10 +143,10 @@ val DiZhi.jiGongGan: Array<TianGan>
             DiZhi("丑") -> arrayOf(TianGan("癸"))
             DiZhi("寅") -> arrayOf(TianGan("甲"))
             DiZhi("辰") -> arrayOf(TianGan("乙"))
-            DiZhi("巳") -> arrayOf(TianGan("丙"),TianGan("戌"))
+            DiZhi("巳") -> arrayOf(TianGan("丙"),TianGan("戊"))
             DiZhi("未") -> arrayOf(TianGan("丁"),TianGan("己"))
             DiZhi("申") -> arrayOf(TianGan("庚"))
-            DiZhi("戌") -> arrayOf(TianGan("酉"))
+            DiZhi("戌") -> arrayOf(TianGan("辛"))
             DiZhi("亥") -> arrayOf(TianGan("壬"))
             else -> emptyArray()
         }

@@ -417,7 +417,7 @@ class SanChuan(val tianPan: TianPan, val siKe: SiKe) {
 
 fun SanChuan.toJSON(): String {
     val sc = listOf(chu.toString(), zhong.toString(), mo.toString())
-    val dg = Array(dunGan.size) { dunGan[it].toString() }.toList()
+    val dg = Array(dunGan.size) { dunGan[it]?.toString()?:"" }.toList()
     val lq = liuQing.toList()
     val j = json {
         obj("sanChuan" to array(sc),

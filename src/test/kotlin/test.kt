@@ -1,3 +1,6 @@
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
 import org.lzh.ganzhiwuxing.DiZhi
 import org.lzh.shipan.daluren.ShiPan
 import org.lzh.shipan.daluren.toJSON
@@ -7,12 +10,13 @@ fun main(args: Array<String>) {
 //    println(t.plusHours(1))
 //    println(t.monthValue)
     val s = ShiPan(
-            2018, 10, 13, 17, 14, 40,
-            DiZhi("辰"),
-            DiZhi("巳"),
+            2018, 11, 13, 11, 3, 53,
+            DiZhi("卯"),
+            DiZhi("午"),
             true,
             2018)
 //    val result = Klaxon().toJsonString(s)
+    val sJSON = Parser().parse(StringBuilder(s.toJSON())) as Map<*,*>
     println(s.toJSON())
 //    for(i in s.solarTerms)println(i)
 //    for(i in s.kongWang)println(i)
