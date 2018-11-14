@@ -66,7 +66,7 @@ fun ShiPan.toJSON(): String {
             "daytime" to daytime,
             "yearOfBirth" to yearOfBirth,//出生年份
             "description" to description, //占测的事
-            "sex" to if (sex == Sex.WOMEN) "男" else "女",
+            "sex" to if (sex == Sex.MAN) "男" else "女",
 //        "siZhu" to mapOf("yearGanZhi" to siZhu.yearGanZhi.toString(),
 //                "monthGanZhi" to siZhu.monthGanZhi.toString(),
 //                "dayGanZhi" to siZhu.dayGanZhi.toString(),
