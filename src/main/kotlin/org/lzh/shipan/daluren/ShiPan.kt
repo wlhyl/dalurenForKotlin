@@ -4,6 +4,7 @@ import com.beust.klaxon.*
 import org.lzh.ganzhiwuxing.DiZhi
 import org.lzh.ganzhiwuxing.GanZhi
 import org.lzh.ganzhiwuxing.TianGan
+import kotlin.reflect.full.declaredFunctions
 
 
 class ShiPan(
@@ -31,11 +32,27 @@ class ShiPan(
     val tianJiang = TianJiangPan(tianPan, siKe, daytime)
     val benMing = getSiZhu(yearOfBirth, 5, 20, 12, 0, 0).yearGanZhi
     val xingNian = getxingNian()
-    val guaTi = sanChuan.guaTi.toMutableList()//TODO
+    val guaTi = getguaTi()
 
     private fun getxingNian(): GanZhi {
         if (sex == Sex.MAN) return GanZhi(TianGan("丙"), DiZhi("寅")) + (year - yearOfBirth)
         else return GanZhi(TianGan("壬"), DiZhi("申")) + (yearOfBirth - year)
+    }
+    private fun getguaTi(): Array<String>{
+        val gt = sanChuan.guaTi.toMutableList()
+        for (f in GuaTi::class.declaredFunctions) {
+            f.annotations.forEach {
+                if (it is ShenShaAndGuaTi) {
+                    // call的返回值为Any?，
+                    // 可以用it is String作自动转换
+                    // 这里使用it.toString()转换，因为it的值是确定的
+                    if(it.type=="guaTi") {
+                         f.call(GuaTi, this)?.let{gt.add(it.toString())}
+                    }
+                }
+            }
+        }
+        return gt.toTypedArray()
     }
 
 }

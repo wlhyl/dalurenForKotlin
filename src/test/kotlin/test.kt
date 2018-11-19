@@ -12,12 +12,12 @@ fun main(args: Array<String>) {
     val s = ShiPan(
             2018, 11, 13, 11, 3, 53,
             DiZhi("卯"),
-            DiZhi("午"),
+            DiZhi("酉"),
             true,
             2018)
 //    val result = Klaxon().toJsonString(s)
     val sJSON = Parser().parse(StringBuilder(s.toJSON())) as Map<*,*>
-    println(s.toJSON())
+    s.guaTi.forEach { println(it) }
 //    for(i in s.solarTerms)println(i)
 //    for(i in s.kongWang)println(i)
 //    println(s.siKe)
