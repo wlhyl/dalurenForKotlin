@@ -32,7 +32,9 @@ class ShiPan(
     val tianJiang = TianJiangPan(tianPan, siKe, daytime)
     val benMing = getSiZhu(yearOfBirth, 5, 20, 12, 0, 0).yearGanZhi
     val xingNian = getxingNian()
+    val factors = mutableListOf<String>() //这个属性要放在guTi前面，否则会是null
     val guaTi = getguaTi()
+
 
     private fun getxingNian(): GanZhi {
         if (sex == Sex.MAN) return GanZhi(TianGan("丙"), DiZhi("寅")) + (year - yearOfBirth)

@@ -8,6 +8,7 @@ import org.lzh.util.GetJulianDayFromDateTime
 import org.lzh.ganzhiwuxing.DiZhi
 import org.lzh.ganzhiwuxing.GanZhi
 import org.lzh.ganzhiwuxing.TianGan
+import org.lzh.ganzhiwuxing.WuXing
 import org.lzh.lunar.GetEarthEclipticLongitudeForSun
 
 fun getSiZhu(year: Int, month: Int, day: Int, hour: Int, minutes: Int, second: Int): SiZHu {
@@ -143,8 +144,8 @@ val DiZhi.jiGongGan: Array<TianGan>
             DiZhi("丑") -> arrayOf(TianGan("癸"))
             DiZhi("寅") -> arrayOf(TianGan("甲"))
             DiZhi("辰") -> arrayOf(TianGan("乙"))
-            DiZhi("巳") -> arrayOf(TianGan("丙"),TianGan("戊"))
-            DiZhi("未") -> arrayOf(TianGan("丁"),TianGan("己"))
+            DiZhi("巳") -> arrayOf(TianGan("丙"), TianGan("戊"))
+            DiZhi("未") -> arrayOf(TianGan("丁"), TianGan("己"))
             DiZhi("申") -> arrayOf(TianGan("庚"))
             DiZhi("戌") -> arrayOf(TianGan("辛"))
             DiZhi("亥") -> arrayOf(TianGan("壬"))
@@ -159,4 +160,12 @@ fun GanZhi.isBaZhuan(): Boolean {
             GanZhi(TianGan("丁"), DiZhi("未")),
             GanZhi(TianGan("己"), DiZhi("未")))
     return this in baZhuan
+}
+
+fun WuXing.wangShuai(month: DiZhi): String {
+    if (month.wuXing.sheng(this)) return "相"
+    if (month.wuXing.ke(this)) return "死"
+    if (this.sheng(month.wuXing)) return "休"
+    if (this.ke(month.wuXing)) return "囚"
+    return "旺"
 }
