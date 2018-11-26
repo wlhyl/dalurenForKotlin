@@ -36,6 +36,7 @@ object GuaTi {
     @ShenShaAndGuaTi("guaTi")
     fun 三光(sp: ShiPan): String? {
         // 2015 - 08-12 巳将卯时
+        // 2018-11-24 寅将申时
         val __月建 = sp.siZhu.monthGanZhi.zhi
         val __三传 = sp.sanChuan
         val __初 = __三传.chu
@@ -44,7 +45,7 @@ object GuaTi {
         when (__初.wuXing.wangShuai(__月建)) {
             "旺" -> sp.factors.add("用旺")
             "相" -> sp.factors.add("用相")
-            else -> return null
+//            else -> return null
         }
 
         val sk = sp.siKe
@@ -53,12 +54,12 @@ object GuaTi {
         when (__干.wuXing.wangShuai(__月建)) {
             "旺" -> sp.factors.add("日干旺")
             "相" -> sp.factors.add("日干相")
-            else -> return null
+//            else -> return null
         }
         when (__支.wuXing.wangShuai(__月建)) {
             "旺" -> sp.factors.add("日支旺")
             "相" -> sp.factors.add("日支相")
-            else -> return null
+//            else -> return null
         }
 
         val tj = sp.tianJiang
@@ -67,8 +68,35 @@ object GuaTi {
         val m = tj.up(__末)
         if (c.good or z.good or m.good) {
             sp.factors.add("吉将入传")
-            return "三光卦"
+//            return "三光卦"
         }
+        if (c.good) sp.factors.add("用乘吉将")
+
+        val ganYang = sk.ganYang
+        val zhiYang = sk.zhiYang
+        when (ganYang.wuXing.wangShuai(__月建)) {
+            "旺" -> sp.factors.add("日上神旺")
+            "相" -> sp.factors.add("日上神相")
+        }
+        when (zhiYang.wuXing.wangShuai(__月建)) {
+            "旺" -> sp.factors.add("支上神旺")
+            "相" -> sp.factors.add("支上神相")
+        }
+        val gt = mutableListOf<String>()
+        if (
+                ("日干旺" in sp.factors || "日干相" in sp.factors) &&
+                ("日支旺" in sp.factors || "日支相" in sp.factors) &&
+                ("用相" in sp.factors || "用相" in sp.factors) &&
+                "吉将入传" in sp.factors
+        ) gt.add("三光卦")
+//        if(gt.size==1)return "三光卦"
+        if (
+                ("日上神旺" in sp.factors || "日上神相" in sp.factors) &&
+                ("支上神旺" in sp.factors || "支上神相" in sp.factors) &&
+                ("用相" in sp.factors || "用相" in sp.factors) &&
+                "用乘吉将" in sp.factors
+        ) gt.add("三光卦")
+        if (gt.isNotEmpty()) return "三光卦"
         return null
     }
 
