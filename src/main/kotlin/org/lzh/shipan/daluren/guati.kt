@@ -25,11 +25,9 @@ object GuaTi {
         val __月将 = sp.sunMansion
         val __三传 = sp.sanChuan
         val sc = arrayOf(__三传.chu, __三传.zhong, __三传.mo)
-        if (sc[0] == __月将 && __太岁 in sc) {
-            sp.factors.add("发用为月将")
-            sp.factors.add("太岁入传")
-            return "龙德卦"
-        }
+        if (sc[0] == __月将) sp.factors.add("发用为月将")
+        if (__太岁 in sc) sp.factors.add("太岁入传")
+        if ("发用为月将" in sp.factors && "太岁入传" in sp.factors)return "龙德卦"
         return null
     }
 

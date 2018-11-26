@@ -10,9 +10,9 @@ fun main(args: Array<String>) {
 //    println(t.plusHours(1))
 //    println(t.monthValue)
     val s = ShiPan(
-            2018, 11, 24, 22, 3, 53,
+            2018, 11, 26, 22, 3, 53,
             DiZhi("寅"),
-            DiZhi("申"),
+            DiZhi("午"),
             true,
             2018)
 //    val result = Klaxon().toJsonString(s)
