@@ -97,5 +97,37 @@ object GuaTi {
         if (gt.isNotEmpty()) return "三光卦"
         return null
     }
+    @ShenShaAndGuaTi("guaTi")
+    fun 三阳(sp: ShiPan): String? {
+        // 2018 - 04-03 戌将 酉时
+//        if(!("用相" in sp.factors || "用相" in sp.factors)) {
+            val __初 = sp.sanChuan.chu
+            val __月建 = sp.siZhu.monthGanZhi.zhi
+            when (__初.wuXing.wangShuai(__月建)) {
+                "旺" -> sp.factors.add("用旺")
+                "相" -> sp.factors.add("用相")
+            }
+//        }
+
+        val __天将盘 = sp.tianJiang
+        if (__天将盘.inverse)sp.factors.add("天乙逆行") else sp.factors.add("天乙顺行")
+
+        val sk = sp.siKe
+        val __干 = sk.gan
+        val __支 = sk.zhi
+        val __干天将 = __天将盘.up(__干.jiGong)
+        val __支天将 = __天将盘.up(__支)
+        val t = arrayOf(TianJiang("蛇"),
+                TianJiang("雀"),
+                TianJiang("合"),
+                TianJiang("勾"),
+            TianJiang("龙"))
+        if (__干天将 in t &&  __支天将 in t) sp.factors.add("日辰在天乙前")
+
+        if(!("用相" in sp.factors || "用旺" in sp.factors))return null
+        if("天乙逆行" in sp.factors) return null
+        if("日辰在天乙前" in sp.factors)return "三阳卦"
+        return null
+    }
 
 }

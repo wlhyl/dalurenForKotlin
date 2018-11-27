@@ -10,15 +10,15 @@ fun main(args: Array<String>) {
 //    println(t.plusHours(1))
 //    println(t.monthValue)
     val s = ShiPan(
-            2018, 11, 26, 22, 3, 53,
-            DiZhi("寅"),
-            DiZhi("午"),
-            true,
+            2018, 4, 3, 22, 3, 53,
+            DiZhi("戌"),
+            DiZhi("酉"),
+            false,
             2018)
 //    val result = Klaxon().toJsonString(s)
     val sJSON = Parser().parse(StringBuilder(s.toJSON())) as Map<*,*>
     s.guaTi.forEach { println(it) }
-    s.factors.forEach { println(it) }
+    s.factors.distinct().forEach { println(it) }
 //    for(i in s.solarTerms)println(i)
 //    for(i in s.kongWang)println(i)
 //    println(s.siKe)

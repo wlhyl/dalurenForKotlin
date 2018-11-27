@@ -33,6 +33,9 @@ class ShiPan(
     val benMing = getSiZhu(yearOfBirth, 5, 20, 12, 0, 0).yearGanZhi
     val xingNian = getxingNian()
     val factors = mutableListOf<String>() //这个属性要放在guTi前面，否则会是null
+//    get() {
+//        return field.distinct().toMutableList()
+//    }
     val guaTi = getguaTi()
 
 
