@@ -169,3 +169,4 @@ fun WuXing.wangShuai(month: DiZhi): String {
     if (this.ke(month.wuXing)) return "囚"
     return "旺"
 }
+data class ShenShaData(val shenShaType: String,val shenShanName: String,val shenSha: DiZhi)

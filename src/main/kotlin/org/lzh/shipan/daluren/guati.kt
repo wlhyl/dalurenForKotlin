@@ -1,5 +1,7 @@
 package org.lzh.shipan.daluren
 
+import org.lzh.ganzhiwuxing.DiZhi
+
 object GuaTi {
     @ShenShaAndGuaTi("guaTi")
     fun 伏呤(sp: ShiPan): String? {
@@ -129,5 +131,88 @@ object GuaTi {
         if("日辰在天乙前" in sp.factors)return "三阳卦"
         return null
     }
+    @ShenShaAndGuaTi("guaTi")
+    fun 三奇0(sp: ShiPan): String? {
+        // 2018-11-26T22:36:00  丑时
+        lateinit  var xq: DiZhi
+        for(s in sp.sheSha){
+            if (s.shenShanName=="旬奇"){
+            xq = s.shenSha
+            break
+        }
+        }
 
+
+        val __sc = sp.sanChuan
+        val sc = arrayOf(__sc.chu, __sc.zhong, __sc.mo)
+        if (xq in sc)  {
+            sp.factors.add("旬奇入传")
+            return  "三奇卦"
+        }
+        return null
+    }
+    @ShenShaAndGuaTi("guaTi")
+    fun 三奇1(sp: ShiPan): String? {
+        // 2018-11-26T22:36:00  丑时
+        lateinit  var xq: DiZhi
+        for(s in sp.sheSha){
+            if (s.shenShanName=="旬奇"){
+                xq = s.shenSha
+                break
+            }
+        }
+
+
+        val sk = sp.siKe
+
+        val ganYang = sk.ganYang
+        val zhiYang = sk.zhiYang
+        if (xq in arrayOf(ganYang,zhiYang))  {
+            sp.factors.add("旬奇临日辰")
+            return  "三奇卦"
+        }
+        return null
+    }
+    @ShenShaAndGuaTi("guaTi")
+    fun 三奇2(sp: ShiPan): String? {
+        // 2018-11-26T22:36:00.000+08:00 巳时 本命2018 男
+        lateinit  var xq: DiZhi
+        for(s in sp.sheSha){
+            if (s.shenShanName=="旬奇"){
+                xq = s.shenSha
+                break
+            }
+        }
+
+
+        val xingNian= sp.xingNian.zhi
+
+    val tp=sp.tianPan
+        if (xq ==tp.up(xingNian))  {
+            sp.factors.add("旬奇临行年")
+            return  "三奇卦"
+        }
+        return null
+    }
+    @ShenShaAndGuaTi("guaTi")
+    fun 三奇3(sp: ShiPan): String? {
+        // 2018-11-26T22:36:00.000+08:00 丑时 本命2018 男
+        lateinit  var xq: DiZhi
+        for(s in sp.sheSha){
+            if (s.shenShanName=="旬奇"){
+                xq = s.shenSha
+                break
+            }
+        }
+
+
+        val b = sp.benMing.zhi
+
+        val tp=sp.tianPan
+        if (xq ==tp.up(b))  {
+            sp.factors.add("旬奇临本命")
+            return  "三奇卦"
+        }
+        return null
+    }
 }

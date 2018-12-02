@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
             val __月将 = getSunMansion(t0.year, t0.monthOfYear, t0.dayOfMonth, t0.hourOfDay, t0.minuteOfHour, t0.secondOfMinute)
             val s = ShiPan(t0.year, t0.monthOfYear, t0.dayOfMonth, t0.hourOfDay, t0.minuteOfHour, t0.secondOfMinute,
                     __月将, DiZhi("子") + i, true, 2018, "abc", Sex.MAN)
-            if ("龙德卦" in s.guaTi) println("${t0} ${DiZhi("子") + i}")
+            if ("三奇卦" in s.guaTi) println("${t0} ${DiZhi("子") + i}")
         }
     }
 }

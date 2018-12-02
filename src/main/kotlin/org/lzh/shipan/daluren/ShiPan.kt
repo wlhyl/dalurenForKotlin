@@ -32,6 +32,7 @@ class ShiPan(
     val tianJiang = TianJiangPan(tianPan, siKe, daytime)
     val benMing = getSiZhu(yearOfBirth, 5, 20, 12, 0, 0).yearGanZhi
     val xingNian = getxingNian()
+    val sheSha= getshenSha()
     val factors = mutableListOf<String>() //这个属性要放在guTi前面，否则会是null
 //    get() {
 //        return field.distinct().toMutableList()
@@ -58,6 +59,27 @@ class ShiPan(
             }
         }
         return gt.toTypedArray()
+    }
+    private fun  getshenSha(): Array<ShenShaData>{
+        val s = mutableListOf<ShenShaData>()
+//                mapOf("年" to mutableMapOf<String,DiZhi>(),
+//                "月" to mutableMapOf<String,DiZhi>(),
+//                "日" to mutableMapOf<String,DiZhi>(),
+//                "旬" to mutableMapOf<String,DiZhi>())
+        for (f in ShenSha::class.declaredFunctions) {
+            f.annotations.forEach {
+                if (it is ShenShaAndGuaTi) {
+                    // call的返回值为Any?，
+                    // 可以用it is String作自动转换
+                    // 这里使用it.toString()转换，因为it的值是确定的
+                    if(it.type=="shenSha") {
+                        f.call(ShenSha, this)?.let{if(it is ShenShaData)s.add(it)
+                            }
+                    }
+                }
+            }
+        }
+        return s.toTypedArray()
     }
 
 }
@@ -112,3 +134,4 @@ fun ShiPan.toJSON(): String {
     return Klaxon().toJsonString(j)
 //    return j.toJsonString()
 }
+
