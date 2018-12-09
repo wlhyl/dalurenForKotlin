@@ -29,7 +29,7 @@ object GuaTi {
         val sc = arrayOf(__三传.chu, __三传.zhong, __三传.mo)
         if (sc[0] == __月将) sp.factors.add("发用为月将")
         if (__太岁 in sc) sp.factors.add("太岁入传")
-        if ("发用为月将" in sp.factors && "太岁入传" in sp.factors)return "龙德卦"
+        if ("发用为月将" in sp.factors && "太岁入传" in sp.factors) return "龙德卦"
         return null
     }
 
@@ -99,20 +99,21 @@ object GuaTi {
         if (gt.isNotEmpty()) return "三光卦"
         return null
     }
+
     @ShenShaAndGuaTi("guaTi")
     fun 三阳(sp: ShiPan): String? {
         // 2018 - 04-03 戌将 酉时
 //        if(!("用相" in sp.factors || "用相" in sp.factors)) {
-            val __初 = sp.sanChuan.chu
-            val __月建 = sp.siZhu.monthGanZhi.zhi
-            when (__初.wuXing.wangShuai(__月建)) {
-                "旺" -> sp.factors.add("用旺")
-                "相" -> sp.factors.add("用相")
-            }
+        val __初 = sp.sanChuan.chu
+        val __月建 = sp.siZhu.monthGanZhi.zhi
+        when (__初.wuXing.wangShuai(__月建)) {
+            "旺" -> sp.factors.add("用旺")
+            "相" -> sp.factors.add("用相")
+        }
 //        }
 
         val __天将盘 = sp.tianJiang
-        if (__天将盘.inverse)sp.factors.add("天乙逆行") else sp.factors.add("天乙顺行")
+        if (__天将盘.inverse) sp.factors.add("天乙逆行") else sp.factors.add("天乙顺行")
 
         val sk = sp.siKe
         val __干 = sk.gan
@@ -123,40 +124,42 @@ object GuaTi {
                 TianJiang("雀"),
                 TianJiang("合"),
                 TianJiang("勾"),
-            TianJiang("龙"))
-        if (__干天将 in t &&  __支天将 in t) sp.factors.add("日辰在天乙前")
+                TianJiang("龙"))
+        if (__干天将 in t && __支天将 in t) sp.factors.add("日辰在天乙前")
 
-        if(!("用相" in sp.factors || "用旺" in sp.factors))return null
-        if("天乙逆行" in sp.factors) return null
-        if("日辰在天乙前" in sp.factors)return "三阳卦"
+        if (!("用相" in sp.factors || "用旺" in sp.factors)) return null
+        if ("天乙逆行" in sp.factors) return null
+        if ("日辰在天乙前" in sp.factors) return "三阳卦"
         return null
     }
+
     @ShenShaAndGuaTi("guaTi")
     fun 三奇0(sp: ShiPan): String? {
         // 2018-11-26T22:36:00  丑时
-        lateinit  var xq: DiZhi
-        for(s in sp.sheSha){
-            if (s.shenShanName=="旬奇"){
-            xq = s.shenSha
-            break
-        }
+        lateinit var xq: DiZhi
+        for (s in sp.sheSha) {
+            if (s.shenShanName == "旬奇") {
+                xq = s.shenSha
+                break
+            }
         }
 
 
         val __sc = sp.sanChuan
         val sc = arrayOf(__sc.chu, __sc.zhong, __sc.mo)
-        if (xq in sc)  {
+        if (xq in sc) {
             sp.factors.add("旬奇入传")
-            return  "三奇卦"
+            return "三奇卦"
         }
         return null
     }
+
     @ShenShaAndGuaTi("guaTi")
     fun 三奇1(sp: ShiPan): String? {
         // 2018-11-26T22:36:00  丑时
-        lateinit  var xq: DiZhi
-        for(s in sp.sheSha){
-            if (s.shenShanName=="旬奇"){
+        lateinit var xq: DiZhi
+        for (s in sp.sheSha) {
+            if (s.shenShanName == "旬奇") {
                 xq = s.shenSha
                 break
             }
@@ -167,39 +170,41 @@ object GuaTi {
 
         val ganYang = sk.ganYang
         val zhiYang = sk.zhiYang
-        if (xq in arrayOf(ganYang,zhiYang))  {
+        if (xq in arrayOf(ganYang, zhiYang)) {
             sp.factors.add("旬奇临日辰")
-            return  "三奇卦"
+            return "三奇卦"
         }
         return null
     }
+
     @ShenShaAndGuaTi("guaTi")
     fun 三奇2(sp: ShiPan): String? {
         // 2018-11-26T22:36:00.000+08:00 巳时 本命2018 男
-        lateinit  var xq: DiZhi
-        for(s in sp.sheSha){
-            if (s.shenShanName=="旬奇"){
+        lateinit var xq: DiZhi
+        for (s in sp.sheSha) {
+            if (s.shenShanName == "旬奇") {
                 xq = s.shenSha
                 break
             }
         }
 
 
-        val xingNian= sp.xingNian.zhi
+        val xingNian = sp.xingNian.zhi
 
-    val tp=sp.tianPan
-        if (xq ==tp.up(xingNian))  {
+        val tp = sp.tianPan
+        if (xq == tp.up(xingNian)) {
             sp.factors.add("旬奇临行年")
-            return  "三奇卦"
+            return "三奇卦"
         }
         return null
     }
+
     @ShenShaAndGuaTi("guaTi")
     fun 三奇3(sp: ShiPan): String? {
         // 2018-11-26T22:36:00.000+08:00 丑时 本命2018 男
-        lateinit  var xq: DiZhi
-        for(s in sp.sheSha){
-            if (s.shenShanName=="旬奇"){
+        lateinit var xq: DiZhi
+        for (s in sp.sheSha) {
+            if (s.shenShanName == "旬奇") {
                 xq = s.shenSha
                 break
             }
@@ -208,11 +213,39 @@ object GuaTi {
 
         val b = sp.benMing.zhi
 
-        val tp=sp.tianPan
-        if (xq ==tp.up(b))  {
+        val tp = sp.tianPan
+        if (xq == tp.up(b)) {
             sp.factors.add("旬奇临本命")
-            return  "三奇卦"
+            return "三奇卦"
         }
+        return null
+    }
+
+    @ShenShaAndGuaTi("guaTi")
+    fun 六仪(sp: ShiPan): String? {
+        // 2018-11-26T22:36:00 辰
+        val __kw = sp.kongWang
+        val __xs = __kw[1] + 1
+        val sc = arrayOf(sp.sanChuan.chu, sp.sanChuan.zhong, sp.sanChuan.mo)
+        if (__xs in sc) sp.factors.add("六仪入传")
+
+        val sk = sp.siKe
+        val ganYang = sk.ganYang
+        val zhiYang = sk.zhiYang
+        if (__xs in arrayOf(ganYang, zhiYang)) sp.factors.add("六仪临日辰")
+
+        val xingNian = sp.xingNian.zhi
+
+        val tp = sp.tianPan
+        if (__xs == tp.up(xingNian)) sp.factors.add("六仪临行年")
+
+        val b = sp.benMing.zhi
+
+        if (__xs == tp.up(b)) sp.factors.add("六仪临本命")
+
+
+
+        if ("六仪入传" in sp.factors) return "六仪卦"
         return null
     }
 }

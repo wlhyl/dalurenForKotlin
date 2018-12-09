@@ -10,12 +10,12 @@ fun main(args: Array<String>) {
 //    println(t.plusHours(1))
 //    println(t.monthValue)
     val s = ShiPan(
-            2018, 4, 3, 22, 3, 53,
-            DiZhi("戌"),
-            DiZhi("酉"),
+            2018, 11, 26, 22, 3, 53,
+            DiZhi("寅"),
+            DiZhi("辰"),
             false,
             2018)
 //    val result = Klaxon().toJsonString(s)
 //    s.sheSha.forEach { println(it) }
-//    s.factors.distinct().forEach { println(it) }
+    s.factors.distinct().forEach { println(it) }
 }
